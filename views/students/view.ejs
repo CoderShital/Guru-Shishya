@@ -1,10 +1,10 @@
 <% layout("./layouts/boilerplate") -%>   
 <body>
   <div class="container ">
-    <h1>Student Details</h1>
-    <div style="display: flex;">
+    <h1 style="color: orange; justify-self: center">Student Details</h1><br>
+    <div class="show">
       <p><b>Department Name:</b> <%= student.branch %> </p>
-      <p><b>Academic Year:</b><%= student.academic_yr%></p>
+      <p class=" col-3 offset-4" ><b>Academic Year:</b><%= student.academic_yr%></p>
     </div>
    
     <p><b>Name of Techer Guardian:</b>Prof. <%= student.tg_name %></p>
@@ -13,14 +13,17 @@
       <div class="basic-info">
           <p class="col-3 offset-1 font-weight-bold"><b>Name:</b> <%= student.name %></p>
           
-          <div class="show offset-1">
+          <div class="show offset-1">            
             <p ><b>Email:</b> <%= student.email %></p>
-            <p ><b>Mobile:</b> <%= student.mobile %></p>
-            <p ><b>Year of Study:</b> <%= student.yr_of_study %> Year </p>
+            <p ><b>Brach:</b> <%= student.branch %></p>
 
           </div>
+          
           <div class="show offset-1">
-            <p ><b>Brach:</b> <%= student.branch %></p>
+          </div>
+          <div class="show offset-1">
+            <p ><b>Mobile:</b> <%= student.mobile %></p>
+            <p ><b>Year of Study:</b> <%= student.yr_of_study %> Year </p>
           </div>
           <div class="show offset-1">
             <p ><b>Class:</b> <%= student.classN %></p>
@@ -36,7 +39,6 @@
           <img src="/uploads/<%= student.img_name %>"  id="img" alt="Student Image" />
         <% } %>   
       </div>
-
     </div>
     <div>
       <p><b>Address Information</b></p>
@@ -66,7 +68,7 @@
       <div class="show offset-1">
         <div>
           <p><b>Mother Name:</b> <%=parents.mo_name %></p>
-          <p><b>Mother Email:</b> <%=parents.mo_city %></p>
+          <p><b>Mother Email:</b> <%=parents.mo_email %></p>
           <p><b>Mother Occupation:</b> <%=parents.mo_occupation %></p>
           <p><b>Mother Contact:</b> <%= parents.mo_contact %></p>
         </div>

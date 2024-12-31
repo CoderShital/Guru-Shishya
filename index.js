@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
@@ -55,88 +55,90 @@ app.get("/", (req, res) => {
 });
 
 
-app.post("/submit", uploads.single("stu_img"), async(req, res) => {
-// console.log(req.body.academic_yr);
-        if(!req.file){
-            return res.send("No file uploaded!!");
-        } 
-    const fileName = req.file.filename;                           // The file name saved with timestamp and extension
-    const filePath = path.join(__dirname, 'uploads', fileName);   // Full path to the uploaded file
+app.post("/submit", uploads.single("stu_img"), async (req, res) => {
+    if (!req.file) {
+        return res.send("No file uploaded!!");
+    }
+    const fileName = req.file.filename;
+    const filePath = path.join(__dirname, 'uploads', fileName);
     console.log('File uploaded to:', 'uploads/' + fileName); // Debug log
-    const {name, classN, branch, email, rollno, mobile, tg_name, dob, blood_group,academic_yr,yr_of_study} = req.body;
-
     
-    connection.beginTransaction((err)=>{
-        if(err){
-            return res.status(500).send("Eror in starting transaction(before starting form filling)");
+    const { name, classN, branch, email, rollno, mobile, tg_name, dob, blood_group, academic_yr, yr_of_study } = req.body;
+    console.log(req.body);
+
+    connection.beginTransaction((err) => {
+        if (err) {
+            return res.status(500).send("Error in starting transaction (before starting form filling)");
         }
-        console.log(tg_name);
+
         let q1 = 'INSERT INTO student (img_path, img_name, name, classN, branch, email, rollno, mobile, tg_name, dob, blood_group, academic_yr, yr_of_study ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
-        connection.query(q1, [filePath, fileName, name, classN, branch, email, rollno, mobile, tg_name, dob, blood_group,academic_yr, yr_of_study ], (err, results) => {
+        connection.query(q1, [filePath, fileName, name, classN, branch, email, rollno, mobile, tg_name, dob, blood_group, academic_yr, yr_of_study], (err, results) => {
             if (err) {
-                return connection.rollback(()=>{
+                // Rollback transaction on error and return immediately to avoid further response
+                return connection.rollback(() => {
                     res.status(500).send("Error in inserting into Student Details");
                     console.log(err);
-
-                })
+                });
             }
-            console.log(academic_yr);
+
             let id = results.insertId;
             console.log(id);
 
-            const {temp_location, temp_city, temp_pincode, temp_state,  per_location, per_city, per_pincode, per_state} =req.body;
-            let q2 = 'INSERT INTO addr(stu_id,temp_location, temp_city, temp_pincode, temp_state,  per_location, per_city, per_pincode, per_state) VALUES(?,?,?,?,?,?,?,?,?)'
-            connection.query(q2, [id,temp_location, temp_city, temp_pincode, temp_state,  per_location, per_city, per_pincode, per_state], (err, results)=>{
+            const { temp_location, temp_city, temp_pincode, temp_state, per_location, per_city, per_pincode, per_state } = req.body;
+            let q2 = 'INSERT INTO addr (stu_id, temp_location, temp_city, temp_pincode, temp_state, per_location, per_city, per_pincode, per_state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            connection.query(q2, [id, temp_location, temp_city, temp_pincode, temp_state, per_location, per_city, per_pincode, per_state], (err, results) => {
                 if (err) {
-                    return connection.rollback(()=>{
+                    // Rollback transaction on error and return immediately to avoid further response
+                    return connection.rollback(() => {
                         res.status(500).send("Error in inserting into Address information");
                         console.log(err);
-
                     });
                 }
-                const {mo_name, mo_email, mo_occupation, mo_contact,  fa_name, fa_email, occupation, fa_contact} =req.body;
-                let q3 = 'INSERT INTO parents(p_id, stu_id, mo_name, mo_email, mo_occupation, mo_contact,  fa_name, fa_email, occupation, fa_contact) VALUES(?,?,?,?,?,?,?,?,?,?)'
-                connection.query(q2, [p_id, id, mo_name, mo_email, mo_occupation, mo_contact,  fa_name, fa_email, occupation, fa_contact], (err, results)=>{
+
+                const { mo_name, mo_email, mo_occupation, mo_contact, fa_name, fa_email, occupation, fa_contact } = req.body;
+                let q3 = 'INSERT INTO parents (stu_id, mo_name, mo_email, mo_occupation, mo_contact, fa_name, fa_email, occupation, fa_contact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+                connection.query(q3, [id, mo_name, mo_email, mo_occupation, mo_contact, fa_name, fa_email, occupation, fa_contact], (err, results) => {
                     if (err) {
-                        return connection.rollback(()=>{
+                        // Rollback transaction on error and return immediately to avoid further response
+                        return connection.rollback(() => {
                             res.status(500).send("Error in inserting into Parents Details");
                             console.log(err);
-    
                         });
                     }
-                });
-                connection.commit((err)=>{
-                    if(err){
-                        return connection.rollback(()=>{
-                            res.status(500).send("Error in commiting transaction");
-                            console.log(err);
-                        });
-                    }
-                    res.redirect(`/submit/${id}`);
-                });
 
+                    // Commit the transaction only if all queries succeed
+                    connection.commit((err) => {
+                        if (err) {
+                            // Rollback transaction if commit fails
+                            return connection.rollback(() => {
+                                res.status(500).send("Error in committing transaction");
+                                console.log(err);
+                            });
+                        }
+
+                        // Send a single response (redirect) after everything has been successfully processed
+                        return res.redirect(`/submit/${id}`);
+                    });
+                });
             });
         });
     });
-   
-
-    
 });
 
 app.get("/submit/:id", (req, res) => {
     let { id } = req.params;
     console.log(id);
 
-    let q = 'SELECT * FROM student as S INNER JOIN addr as A ON S.stu_id = A.stu_id INNER JOIN parents as P ON  S.stu_id = P.stu_id';
+    let q = 'SELECT * FROM student as S INNER JOIN addr as A ON S.stu_id = A.stu_id INNER JOIN parents as P ON  S.stu_id = P.stu_id WHERE S.stu_id = ?';
     connection.query(q, [id], (err, result) => {
         if (err) {
             console.error('Error fetching student details:', err);
             return res.status(500).send('Failed to fetch student details.');
         }
-        console.log({student:result[0]});
-        res.render("students/view", { student: result[0], addr:result[0], parents:result[0] }); // Send the student, addr data to the view - just like we used send object variable with for using it in template.
+
+        // Render the view with data
+        res.render("students/view", { student: result[0], addr: result[0], parents: result[0] });
     });
-   
 });
 
 
@@ -157,6 +159,8 @@ app.get("/alltg", (req, res) => {
         });
     } catch (err) { console.log(err); }
 });
+
+
 
 // app.post('/views', (req, res)=>{
 //     let q = 'SELECT * FROM student'
