@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.heading{
+    color:rgb(255, 166, 0);
+    text-decoration: underline;
+    margin-left: 34rem;
+}
+.a-btn{
+    background-color:#fe424d !important;
+    border: none !important;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.b-btn{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.mybtn{
+    margin-top: 200px;
+}
+
+.title{
+    font-size: 50px;
+    align-items: center !important;
+}
+
+.alltg{
+    margin-left: 5rem;
+}
+.fill{
+    margin-left: 70px;
+}
+
+.head{
+    display:flex !important;
+    justify-content: space-between !important;
+}
+
+.head-1{
+    width: 81rem;
+    display: flex !important;
+}
+.head-1 div{
+    margin-right: 2rem;
+}
+#stu_name, #branch, #email{
+    width: 30rem;
+}
+
+.head-2{
+    width: 81rem;
+    display: flex;
+    justify-content:space-between;
+}
+.head-2 input, p{
+    width: 39rem;
+}
+
+.head-3{
+    width: 81rem;
+    display: flex;
+}
+.head-3 input{
+    margin-right: 0.5rem;
+}
+.head-4{
+    display:flex;
+}
+.head-4 input{
+    transform: scale(1.5); /* Increase size by 1.5 times */
+}
+
+
+
+
+
+
+/* student details */
+.container{
+    font-size: large !important;
+}
+#text_img_div{
+    display: flex;
+    justify-content: space-between !important;
+}
+.basic-info{
+    width: 60rem;
+}
+.basic-info p{
+    width: inherit;
+}
+
+#img{
+    margin-top: 1% !important;
+    border-radius: 10%;
+    width: 15rem;
+    height: 15rem;
+}
+.show{
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+a{
+    text-decoration: none !important;
+    color:#fe424d;
+    font-size: 45px;
+}
+
+.PAGE{
+    background-color: rgb(250, 218, 210);
+    background-color: orange;
+}

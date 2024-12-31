@@ -1,0 +1,142 @@
+<% layout("./layouts/boilerplate") -%>   
+<body>
+  <div class="container ">
+    <h1>Student Details</h1>
+    <div style="display: flex;">
+      <p><b>Department Name:</b> <%= student.branch %> </p>
+      <p><b>Academic Year:</b><%= student.academic_yr%></p>
+    </div>
+   
+    <p><b>Name of Techer Guardian:</b>Prof. <%= student.tg_name %></p>
+
+    <div id="text_img_div">
+      <div class="basic-info">
+          <p class="col-3 offset-1 font-weight-bold"><b>Name:</b> <%= student.name %></p>
+          
+          <div class="show offset-1">
+            <p ><b>Email:</b> <%= student.email %></p>
+            <p ><b>Mobile:</b> <%= student.mobile %></p>
+            <p ><b>Year of Study:</b> <%= student.yr_of_study %> Year </p>
+
+          </div>
+          <div class="show offset-1">
+            <p ><b>Brach:</b> <%= student.branch %></p>
+          </div>
+          <div class="show offset-1">
+            <p ><b>Class:</b> <%= student.classN %></p>
+            <p ><b>Roll No:</b> <%= student.rollno %></p>
+            <p ><b>Date of birth:</b> <%= new Date(student.dob).toLocaleDateString() %></p>
+            <p ><b>Blood Group:</b> <%= student.blood_group %></p>
+          </div>
+          
+      </div>
+
+      <div class="img_div">
+        <% if (student.img_name) { %>
+          <img src="/uploads/<%= student.img_name %>"  id="img" alt="Student Image" />
+        <% } %>   
+      </div>
+
+    </div>
+    <div>
+      <p><b>Address Information</b></p>
+      <div style="margin-left: 35px;" class="show">
+        <p><b><u>Temporary</u></b></p>
+        <p><b><u>Permanent</u></b></p>
+      </div>
+      <div class="show offset-1">
+        <div>
+          <p><b>Landmark:</b> <%= addr.temp_location %></p>
+          <p><b>Pincode:</b> <%= addr.temp_pincode %></p>
+          <p><b>City:</b> <%= addr.temp_city %></p>
+          <p><b>State:</b> <%= addr.temp_state %></p>
+        </div>
+        <div>
+          <p><b>Landmark:</b> <%= addr.per_location %></p>
+          <p><b>Pincode:</b> <%= addr.per_pincode %></p>
+          <p><b>City:</b> <%= addr.per_city %></p>
+          <p><b>State:</b> <%= addr.per_state %></p> 
+        </div>
+      </div>
+      
+    </div>
+
+    <div>
+      <p><b>Parents Details</b></p>
+      <div class="show offset-1">
+        <div>
+          <p><b>Mother Name:</b> <%=parents.mo_name %></p>
+          <p><b>Mother Email:</b> <%=parents.mo_city %></p>
+          <p><b>Mother Occupation:</b> <%=parents.mo_occupation %></p>
+          <p><b>Mother Contact:</b> <%= parents.mo_contact %></p>
+        </div>
+        <div>
+          <p><b>Father Name:</b> <%= parents.fa_name %> </p>
+          <p><b>Father Email:</b> <%= parents.fa_email %></p>
+          <p><b>Father Occupation:</b> <%= parents.occupation %></p>
+          <p><b>Father Contact:</b> <%= parents.fa_contact %></p>
+        </div>
+      </div> 
+    </div>
+
+    <p><b>Education Datails</b></p>
+    <div class="offset-1">
+      <div class="show">
+        <p><b>SSC Area - </b></p>
+        <p><b>HSC Area - </b></p>
+      </div>
+      <div>
+        <p><b>Junior College Name:</b></p>
+        <p><b>School Name:</b></p>
+      </div>
+      
+      <div class="show">
+          <div>
+            <p><b>School Admission Year:</b></p>
+            <p><b>Jr. College Admission Year:</b></p>
+          </div>
+          <div>
+            <p><b>Pass Year:</b></p>
+            <p><b>Pass Year:</b></p>
+          </div>
+      </div>
+      <div class="show">
+        <p><b>College Percentage(%)</b></p>
+        <p><b>School Percentage(%)</b></p>
+      </div>
+
+
+    </div>
+
+
+     
+  </div>
+    
+    
+
+   
+</body>
+<!-- app.get('/image/:id', (req, res) => {
+    const id = req.params.id;
+    
+    // Retrieve the image data from the database by ID
+    const query = 'SELECT image_data, image_name FROM images WHERE id = ?';
+    connection.query(query, [id], (err, results) => {
+      if (err) {
+        console.error('Error retrieving image from database:', err);
+        return res.status(500).send('Failed to retrieve image.');
+      }
+      
+      if (results.length > 0) {
+        const imageData = results[0].image_data;
+        const imageName = results[0].image_name;
+        
+        // Set headers for the image
+        res.setHeader('Content-Type', 'image/jpeg');  // Adjust based on your image format
+        res.setHeader('Content-Disposition', `attachment; filename=${imageName}`);
+        res.send(imageData);  // Send the image data to the client
+      } else {
+        res.status(404).send('Image not found.');
+      }
+    });
+  }); -->

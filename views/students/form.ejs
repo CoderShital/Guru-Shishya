@@ -1,0 +1,286 @@
+<% layout("./layouts/boilerplate") -%>   
+<body>
+<div class="container">
+    <h2 class="mt-2 heading">Student Form</h2><br>
+
+    <form action="/submit", method="post" enctype="multipart/form-data">
+        <div class="head">
+            <div class="form-group">
+                <label for="dept" class="form-label "><b>Department Name:</b> </label>
+                <input type="text" placeholder="your department name" id="dept" class="form-control" name="deptN">
+            </div>
+            <div class="form-group">
+                <label for="yr" class="form-label"><b>Academic Year:</b> </label>
+                <input type="text" placeholder="eg. 2024 - 2025" id="yr" name="academic_yr" class="form-control"> 
+            </div>
+        </div>
+        <div>
+            <label for="tg" class="form-label"><b>Name of Teacher Guardian:</b></label>
+            <select name="tg_name" id="tg" class="form-control">
+                <option value="not-choosen">Click to choose your TG</option>
+                <option value="Prof. S. S. Mandawale">Prof. S. S. Mandawale</option>
+                <option value="Prof. A. K. Quadri">Prof. A. K. Quadri</option>
+                <option value="Prof. R. D. Wagh">Prof. R. D. Wagh</option>
+                <option value="Asst.Prof. S. S. Mokase">"Asst.Prof. S. S. Mokase"</option>
+              </select>
+              
+        </div>
+
+        <br><br>
+        <b><p>Personal Information</p></b>
+        <div class="form-group">
+            <label for="photo" class="form-label">Upload Your Photo</label>
+            <input type="file" name="stu_img" id="photo" class="form-control">
+        </div>
+        <div class="head-1">
+            <div class="form-group">
+                <label for="stu_name" class="form-label">Student Name: </label>
+                <input type="text" name="name" value="" id="stu_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="text"  id="dob" name="dob" class="form-control"> 
+            </div>
+            <div class="form-group">
+                <label for="bg" class="form-label">Blood Group</label>
+                <input type="text"  id="bg" name="blood_group" class="form-control"> 
+            </div>
+
+        </div>
+        <div class="head-1 ">
+            <div class="form-group">
+                <label for="branch" class="form-label">Branch</label>
+                <select name="branch" id="branch" class="form-control">
+                    <option >Select Your Branch</option>
+                    <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                    <option value="Computer Science and Engineering(Data Science)">Computer Science and Engineering(Data Science)</option>
+                    <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="class" class="form-label">Class:</label>
+                <input type="text" name="classN" id="class" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="rollno" class="form-label">Roll No.:</label>
+                <input type="text" name="rollno" id="rollno" class="form-control">
+            </div>
+            
+        </div>
+        <div class="head-1">
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" placeholder="your email" id="email" class="form-control"> 
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="form-label">Contact No: </label>
+                <input type="number" id="mobile" name="mobile" class="form-control" placeholder='mobile no.'> 
+            </div>
+            <div class="form-group"> 
+                <label for="yr" class="form-label">Year of Study: </label>
+                <select name="yr_of_study" id="yr" class="form-control">
+                    <option >Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+        </div>
+            
+        
+        <b><p class="mt-4">Address</p></b>
+        <div class="head-2">
+            <div><b><u><p>Temporary</p></u></b></div>
+            <div><b><u><p>Permanent</p></u></b></div>
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="temp_loc">Landmark</label>
+                <input type="text" name="temp_location" id="temp_loc" class="form-control" placeholder="E.g. near xyz hospital, MGM road">
+            </div>
+            <div class="form-group">
+                <label for="per_loc">Landmark</label>
+                <input type="text" name="per_location" id="per_loc" class="form-control" placeholder="E.g. near xyz hospital, MGM road">
+            </div>
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="temp_pin">Pincode</label>
+                <input type="number" name="temp_pincode" id="temp_pin" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="per_pin">Pincode</label>
+                <input type="number" name="per_pincode" id="per_pin" class="form-control">
+            </div>
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="temp_city">City</label>
+                <input type="text" name="temp_city" id="temp_city" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="per_city">City</label>
+                <input type="text" name="per_city" id="per_city" class="form-control">
+            </div>
+
+        </div> 
+        <div class="head-2">
+            <div class="form-group">
+                <label for="temp_state">State</label>
+                <input type="text" name="temp_state" id="temp_state" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="per_state">State</label>
+                <input type="text" name="per_state" id="per_state" class="form-control">
+            </div>
+        </div>
+        
+      
+
+        <b><p class="mt-4">Parent Details</p></b>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="mother">Mother Name:</label>
+                <input type="text" id="mother" name="mo_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="father">Father Name:</label>
+                <input type="text" id="father" name="fa_name" class="form-control">
+            </div>  
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="mother_email">Mother Email:</label>
+                <input type="email" id="mother_email" name="mo_email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="father_email">Father Email:</label>
+                <input type="email" id="father_email" name="fa_email" class="form-control">
+            </div>    
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="mother_occ">Mother Occupation:</label>
+                <input type="text" id="mother_occ" name="mo_occupation" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="father_occ">Father Occupation:</label>
+                <input type="text" id="father_occ" name="occupation" class="form-control">
+            </div>
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="mother_cont">Mother Contact:</label>
+                <input type="number" id="mother_cont" name="mo_contact" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="father_cont">Father Contact:</label>
+                <input type="number" id="father_cont" name="fa_contact" class="form-control">
+            </div>
+        </div>
+        
+        <br>
+        <b><p>Education Details</p></b>
+        <div class="head-3">
+            <div>
+                <b><p>SSC Area</p></b>
+                <div class="head-4">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="village" name="ssc_area" value="Village">
+                        <label for="village">Village</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="city" name="ssc_area" value="City">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="town" name="ssc_area" value="Town">
+                        <label for="town">Town</label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div>
+                <b><p>HSC Area</p></b>
+                <div class="head-4">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="village" name="hsc_area" value="Village">
+                        <label for="village">Village</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="city" name="hsc_area" value="City">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" id="town" name="hsc_area" value="Town">
+                        <label for="town">Town</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="jr_coll_name">Junior College Name:</label>
+            <input type="text" name="hsc_name" id="jr_coll_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ssc_name">School Name:</label>
+            <input type="text"name="ssc_name" id="ssc_name" class="form-control">
+        </div>
+        <div class="form-group head-2">
+            <div>
+                <label for="ssc_adm">School Admission Year:</label>
+                <input type="text"  name="ssc_adm_yr" id="ssc_adm" class="form-control">
+            </div>
+            <div>
+                <label for="ssc_pass">Pass Year:</label>
+                <input type="text"  name="ssc_adm_yr" id="ssc_pass" class="form-control">
+            </div>
+            
+        </div>
+        <div class="head-2">
+            <div class="form-group">
+                <label for="hsc_adm">Jr. College Admission Year</label>
+                <input type="number" name="hsc_adm_yr"id="hsc_adm" class="form-control">
+            </div>
+            <div>
+                <label for="hsc_pass">Pass Year:</label>
+                <input type="text" name="hsc_pass_yr" id="hsc_pass" class="form-control">
+            </div>
+        </div>
+        
+        <div class="head-2">
+            <div class="form-group">
+                <label for="ssc_cent">College Percentage(%)</label>
+                <input type="number" name="ssc_cent" id="ssc_cent" class="form-control">
+            </div>
+                <div>
+                <label for="hsc_cent">School Percentage(%)</label>
+                <input type="number" name="hsc_cent" id="hsc_cent" class="form-control">
+            </div>
+        </div>
+        
+           
+       
+        
+        
+          
+        
+        
+
+
+        
+
+        <button class="btn btn-dark mt-2">submit</button>
+    </form>
+</div>
+    
+</body>
+</html>

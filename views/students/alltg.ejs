@@ -1,0 +1,14 @@
+<% layout("./layouts/boilerplate") -%>   
+<body>
+    <h2>All TGs</h2>
+    <div class="col-3 offset-1">
+        <% for(List of alltg){ %>
+            <div>
+                <a href="/tgdetails">&#8226; <%= List.tg_name %> </a>
+            </div>
+        <% } %>
+    </div>
+
+    
+
+</body>
