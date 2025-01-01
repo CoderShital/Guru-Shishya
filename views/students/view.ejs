@@ -8,38 +8,35 @@
     </div>
    
     <p><b>Name of Techer Guardian:</b>Prof. <%= student.tg_name %></p>
-
+<hr>
+    <p><b>Student Profile</b></p>
     <div id="text_img_div">
-      <div class="basic-info">
-          <p class="col-3 offset-1 font-weight-bold"><b>Name:</b> <%= student.name %></p>
-          
-          <div class="show offset-1">            
-            <p ><b>Email:</b> <%= student.email %></p>
-            <p ><b>Brach:</b> <%= student.branch %></p>
-
-          </div>
-          
-          <div class="show offset-1">
-          </div>
-          <div class="show offset-1">
-            <p ><b>Mobile:</b> <%= student.mobile %></p>
-            <p ><b>Year of Study:</b> <%= student.yr_of_study %> Year </p>
-          </div>
-          <div class="show offset-1">
-            <p ><b>Class:</b> <%= student.classN %></p>
-            <p ><b>Roll No:</b> <%= student.rollno %></p>
-            <p ><b>Date of birth:</b> <%= new Date(student.dob).toLocaleDateString() %></p>
-            <p ><b>Blood Group:</b> <%= student.blood_group %></p>
-          </div>
-          
-      </div>
-
       <div class="img_div">
         <% if (student.img_name) { %>
           <img src="/uploads/<%= student.img_name %>"  id="img" alt="Student Image" />
         <% } %>   
       </div>
+      <div class="basic-info">
+          <p class="col-3 font-weight-bold"><b>Name:</b> <%= student.name %></p>            
+          <p ><b>Email:</b> <%= student.email %></p>
+          <p ><b>Brach:</b> <%= student.branch %></p>
+
+          <div class="show">
+            <p ><b>Mobile:</b> <%= student.mobile %></p>
+            <p ><b>Year of Study:</b> <%= student.yr_of_study %> Year </p>
+          </div>
+          <div class="show">
+            <p ><b>Class:</b> <%= student.classN %></p>
+            <p ><b>Roll No:</b> <%= student.rollno %></p>
+            <p ><b>Date of birth:</b> <%= new Date(student.dob).toLocaleDateString() %></p>
+            <p ><b>Blood Group:</b> <%= student.blood_group %></p>
+          </div>   
+      </div>
+     
     </div>
+    
+
+    <hr>
     <div>
       <p><b>Address Information</b></p>
       <div style="margin-left: 35px;" class="show">
@@ -63,6 +60,7 @@
       
     </div>
 
+    <hr>
     <div>
       <p><b>Parents Details</b></p>
       <div class="show offset-1">
@@ -81,6 +79,7 @@
       </div> 
     </div>
 
+    <hr>
     <p><b>Education Datails</b></p>
     <div class="offset-1">
       <div class="show">
@@ -95,30 +94,30 @@
       <div class="show">
           <div>
             <p><b>School Admission Year:</b> <%= edu_details.ssc_adm_yr %></p>
-            <p><b>Jr. College Admission Year:</b> <%= edu_details.hsc_adm_yr %></p>
+            <p><b>Pass Year:</b><%= edu_details.ssc_pass_yr %></p>
           </div>
           <div>
-            <p><b>Pass Year:</b><%= edu_details.ssc_pass_yr %></p>
+            <p><b>Jr. College Admission Year:</b> <%= edu_details.hsc_adm_yr %></p>
             <p><b>Pass Year:</b><%= edu_details.hsc_pass_yr %></p>
           </div>
       </div>
       <div class="show">
-        <p><b>College Percentage(%)</b> <%= edu_details.hsc_cent %></p>
-        <p><b>School Percentage(%)</b> <%= edu_details.ssc_cnet %></p>
+        <p><b>School Percentage(%): </b> <%= edu_details.ssc_cent %></p>
+        <p><b>College Percentage(%): </b> <%= edu_details.hsc_cent %></p>
       </div>
 
       <div class="show">
-        <p><b>College Name:</b><%= edu_details.clg_name %></p>
+        <p><b>College Name:</b> <%= edu_details.clg_name %></p>
       </div>
       <div class="show">
-        <p><b>Academic Year(of complete course):</b><%= edu_details.course_duration %></p>
-        <p><b>Current Year:</b><%= edu_details.current_yr %></p>
+        <p><b>Academic Year(of complete course):</b> <%= edu_details.course_duration %></p>
+        <p><b>Current Year:</b> <%= edu_details.current_yr %></p>
       </div>
       <div class="show">
-        <p><b>FY CGPA:</b><%= edu_details.fy_gpa %></p>
-        <p><b>SY CGPA:</b><%= edu_details.sy_gpa %></p>
-        <p><b>TY CGPA:</b><%= edu_details.ty_gpa %></p>
-        <p><b>BE CGPA:</b><%= edu_details.be_gpa %></p>
+        <p><b>FY CGPA:</b> <%= edu_details.fy_gpa %></p>
+        <p><b>SY CGPA:</b> <%= edu_details.sy_gpa %></p>
+        <p><b>TY CGPA:</b> <%= edu_details.ty_gpa %></p>
+        <p><b>BE CGPA:</b> <%= edu_details.be_gpa %></p>
       </div>
     </div>
 
