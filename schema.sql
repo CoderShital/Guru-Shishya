@@ -83,13 +83,13 @@ USE TG_FORM;
 -- hsc_pass_yr INT,
 -- hsc_cent FLOAT NOT NULL,
 
--- clg_name VARCHAR(70) NOT NULL,
--- course_duration VARCHAR(20) NOT NULL,
--- current_yr INT NOT NULL,
--- fy_gpa FLOAT DEFAULT 0.0,
--- sy_gpa FLOAT DEFAULT 0.0,
--- ty_gpa FLOAT DEFAULT 0.0,
--- be_gpa FLOAT DEFAULT 0.0,
+clg_name VARCHAR(70) NOT NULL,
+course_duration VARCHAR(20) NOT NULL,
+current_yr INT NOT NULL,
+fy_gpa DECIMAL(4, 2) DEFAULT 00.00;
+sy_gpa DECIMAL(4, 2) DEFAULT 00.00;
+ty_gpa DECIMAL(4, 2) DEFAULT 00.00;
+be_gpa DECIMAL(4, 2) DEFAULT 00.00;
 
 -- FOREIGN KEY (stu_id) REFERENCES student(stu_id)
 -- );

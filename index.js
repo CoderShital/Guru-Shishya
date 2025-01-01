@@ -103,12 +103,12 @@ app.post("/submit", uploads.single("stu_img"), async (req, res) => {
                         return connection.rollback(() => {
                             res.status(500).send("Error in inserting into Parents Details");
                             console.log(err);
-                            
+
                         });
                     }
-                    const {ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa} = req.body;
-                    let q4 = 'INSERT INTO edu_details (stu_id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)';
-                    connection.query(q4, [id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa], (err, results) => {
+                    const {ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration, fy_gpa, sy_gpa, ty_gpa, be_gpa} = req.body;
+                    let q4 = 'INSERT INTO edu_details (stu_id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration, fy_gpa, sy_gpa, ty_gpa, be_gpa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)';
+                    connection.query(q4, [id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration, fy_gpa, sy_gpa, ty_gpa, be_gpa], (err, results) => {
                     if (err) {
                         // Rollback transaction on error and return immediately to avoid further response
                         return connection.rollback(() => {
