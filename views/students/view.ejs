@@ -84,30 +84,42 @@
     <p><b>Education Datails</b></p>
     <div class="offset-1">
       <div class="show">
-        <p><b>SSC Area - </b></p>
-        <p><b>HSC Area - </b></p>
+        <p><b>SSC Area - </b> <%= edu_details.ssc_area %></p>
+        <p><b>HSC Area - </b> <%= edu_details.hsc_area %></p>
       </div>
       <div>
-        <p><b>Junior College Name:</b></p>
-        <p><b>School Name:</b></p>
+        <p><b>Junior College Name:</b> <%= edu_details.hsc_name %> </p>
+        <p><b>School Name:</b> <%= edu_details.ssc_name %></p>
       </div>
       
       <div class="show">
           <div>
-            <p><b>School Admission Year:</b></p>
-            <p><b>Jr. College Admission Year:</b></p>
+            <p><b>School Admission Year:</b> <%= edu_details.ssc_adm_yr %></p>
+            <p><b>Jr. College Admission Year:</b> <%= edu_details.hsc_adm_yr %></p>
           </div>
           <div>
-            <p><b>Pass Year:</b></p>
-            <p><b>Pass Year:</b></p>
+            <p><b>Pass Year:</b><%= edu_details.ssc_pass_yr %></p>
+            <p><b>Pass Year:</b><%= edu_details.hsc_pass_yr %></p>
           </div>
       </div>
       <div class="show">
-        <p><b>College Percentage(%)</b></p>
-        <p><b>School Percentage(%)</b></p>
+        <p><b>College Percentage(%)</b> <%= edu_details.hsc_cent %></p>
+        <p><b>School Percentage(%)</b> <%= edu_details.ssc_cnet %></p>
       </div>
 
-
+      <div class="show">
+        <p><b>College Name:</b><%= edu_details.clg_name %></p>
+      </div>
+      <div class="show">
+        <p><b>Academic Year(of complete course):</b><%= edu_details.course_duration %></p>
+        <p><b>Current Year:</b><%= edu_details.current_yr %></p>
+      </div>
+      <div class="show">
+        <p><b>FY CGPA:</b><%= edu_details.fy_gpa %></p>
+        <p><b>SY CGPA:</b><%= edu_details.sy_gpa %></p>
+        <p><b>TY CGPA:</b><%= edu_details.ty_gpa %></p>
+        <p><b>BE CGPA:</b><%= edu_details.be_gpa %></p>
+      </div>
     </div>
 
 

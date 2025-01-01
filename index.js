@@ -103,9 +103,19 @@ app.post("/submit", uploads.single("stu_img"), async (req, res) => {
                         return connection.rollback(() => {
                             res.status(500).send("Error in inserting into Parents Details");
                             console.log(err);
+                            
                         });
                     }
-
+                    const {ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa} = req.body;
+                    let q4 = 'INSERT INTO edu_details (stu_id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)';
+                    connection.query(q4, [id, ssc_area, hsc_area, ssc_name, hsc_name, ssc_adm_yr, ssc_pass_yr, ssc_cent, hsc_adm_yr, hsc_pass_yr, hsc_cent, clg_name, course_duration,current_yr, fy_gpa, sy_gpa, ty_gpa, be_gpa], (err, results) => {
+                    if (err) {
+                        // Rollback transaction on error and return immediately to avoid further response
+                        return connection.rollback(() => {
+                            res.status(500).send("Error in inserting into Educational Details");
+                            console.log(err);
+                        });
+                    }
                     // Commit the transaction only if all queries succeed
                     connection.commit((err) => {
                         if (err) {
@@ -123,13 +133,14 @@ app.post("/submit", uploads.single("stu_img"), async (req, res) => {
             });
         });
     });
-});
+  });
+})
 
 app.get("/submit/:id", (req, res) => {
     let { id } = req.params;
     console.log(id);
 
-    let q = 'SELECT * FROM student as S INNER JOIN addr as A ON S.stu_id = A.stu_id INNER JOIN parents as P ON  S.stu_id = P.stu_id WHERE S.stu_id = ?';
+    let q = 'SELECT * FROM student as S INNER JOIN addr as A ON S.stu_id = A.stu_id INNER JOIN parents as P ON  S.stu_id = P.stu_id INNER JOIN edu_details as E ON S.stu_id = E.stu_id';
     connection.query(q, [id], (err, result) => {
         if (err) {
             console.error('Error fetching student details:', err);
@@ -137,7 +148,7 @@ app.get("/submit/:id", (req, res) => {
         }
 
         // Render the view with data
-        res.render("students/view", { student: result[0], addr: result[0], parents: result[0] });
+        res.render("students/view", { student: result[0], addr: result[0], parents: result[0], edu_details: result[0] });
     });
 });
 

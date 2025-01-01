@@ -84,7 +84,7 @@ USE TG_FORM;
 -- hsc_cent FLOAT NOT NULL,
 
 -- clg_name VARCHAR(70) NOT NULL,
--- acadmic_yr INT NOT NULL,
+-- course_duration VARCHAR(20) NOT NULL,
 -- current_yr INT NOT NULL,
 -- fy_gpa FLOAT DEFAULT 0.0,
 -- sy_gpa FLOAT DEFAULT 0.0,
